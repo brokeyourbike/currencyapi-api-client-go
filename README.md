@@ -13,6 +13,14 @@ Currencyapi API Client for Go
 go get github.com/brokeyourbike/currencyapi-api-client-go
 ```
 
+```go
+client := currencyapi.NewClient("token")
+
+resp, err := client.GetLatestRate(context.TODO(), "GBP", []string{"USD", "EUR"})
+require.NoError(t, err)
+require.NotNil(t, resp)
+```
+
 ## Authors
 - [Ivan Stasiuk](https://github.com/brokeyourbike) | [Twitter](https://twitter.com/brokeyourbike) | [LinkedIn](https://www.linkedin.com/in/brokeyourbike) | [stasi.uk](https://stasi.uk)
 
