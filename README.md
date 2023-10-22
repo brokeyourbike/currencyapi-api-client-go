@@ -13,6 +13,8 @@ Currencyapi API Client for Go
 go get github.com/brokeyourbike/currencyapi-api-client-go
 ```
 
+## Usage
+
 ```go
 client := currencyapi.NewClient("token")
 
