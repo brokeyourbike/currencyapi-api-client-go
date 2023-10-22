@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.1](https://www.github.com/brokeyourbike/currencyapi-api-client-go/compare/v0.1.0...v0.1.1) (2023-10-22)
+
+
+### Bug Fixes
+
+* remove mocks from source ([6940969](https://www.github.com/brokeyourbike/currencyapi-api-client-go/commit/69409691686bcbd279859490153c15c39955728a))
+
 ## 0.1.0 (2023-10-22)
 
 
