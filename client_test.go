@@ -63,6 +63,15 @@ func TestTestGetLatestRate_FailDuringRequest(t *testing.T) {
 	require.Contains(t, err.Error(), "cannot send request")
 }
 
+func TestGetLatestRate_RequestErr(t *testing.T) {
+	mockHttpClient := currencyapi.NewMockHttpClient(t)
+	client := currencyapi.NewClient("token", currencyapi.WithHTTPClient(mockHttpClient))
+
+	_, err := client.GetLatestRate(nil, "GBP", []string{"USD"}) //lint:ignore SA1012 testing failure
+	require.Error(t, err)
+	require.Contains(t, err.Error(), "cannot create request")
+}
+
 func TestGetHistoricalRate(t *testing.T) {
 	resp := &http.Response{StatusCode: http.StatusOK, Body: io.NopCloser(bytes.NewReader(historicalResponse))}
 
@@ -74,6 +83,15 @@ func TestGetHistoricalRate(t *testing.T) {
 	got, err := client.GetHistoricalRate(context.TODO(), "GBP", []string{"USD"}, time.Time{})
 	require.NoError(t, err)
 	assert.Len(t, got.Data, 3)
+}
+
+func TestGetHistoricalRate_RequestErr(t *testing.T) {
+	mockHttpClient := currencyapi.NewMockHttpClient(t)
+	client := currencyapi.NewClient("token", currencyapi.WithHTTPClient(mockHttpClient))
+
+	_, err := client.GetHistoricalRate(nil, "GBP", []string{"USD"}, time.Time{}) //lint:ignore SA1012 testing failure
+	require.Error(t, err)
+	require.Contains(t, err.Error(), "cannot create request")
 }
 
 func TestUnexpectedStatusCode(t *testing.T) {
